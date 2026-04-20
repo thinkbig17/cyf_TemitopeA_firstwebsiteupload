@@ -1,0 +1,422 @@
+:root {
+  --obsidian: #0d0d0d;
+  --midnight: #141820;
+  --auric-gold: #c9a84c;
+  --chalk: #f5f0e8;
+  --silver: #a8a8a4;
+  --warm-white: #faf7f2;
+  --divider: rgba(201, 168, 76, 0.3);
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Cormorant Garamond", "Times New Roman", serif;
+
+  --max-width: 1100px;
+  --gutter: clamp(1.5rem, 5vw, 4rem);
+  --section-gap: clamp(4rem, 8vw, 8rem);
+}
+
+/* --- RESET & BASE --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--obsidian);
+  color: var(--chalk);
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.85;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- FADE-IN ANIMATION --- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeUp 1s ease both;
+}
+
+.fade-in:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.fade-in:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.fade-in:nth-child(4) {
+  animation-delay: 0.45s;
+}
+.fade-in:nth-child(5) {
+  animation-delay: 0.6s;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(160deg, #0d0d0d 0%, #141820 50%, #0a0c0e 100%);
+  overflow: hidden;
+  padding: var(--gutter);
+}
+
+/* Grain overlay */
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.08) 0%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 1.4s ease both;
+}
+
+.hero-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--auric-gold);
+  margin-bottom: 1.5rem;
+}
+
+.poem-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 700;
+  line-height: 0.92;
+  color: var(--warm-white);
+  margin-bottom: 2rem;
+}
+
+.poem-title em {
+  font-style: italic;
+  color: var(--auric-gold);
+}
+
+.hero-byline {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--silver);
+  letter-spacing: 0.15em;
+}
+
+/* ============================================================
+   ORNAMENT / DIVIDER
+   ============================================================ */
+.ornament {
+  text-align: center;
+  color: var(--auric-gold);
+  font-size: 1.4rem;
+  letter-spacing: 1rem;
+  margin: var(--section-gap) auto;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   IMAGE + STANZA SECTIONS
+   ============================================================ */
+.image-section {
+  display: flex;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  max-width: var(--max-width);
+  margin: 0 auto var(--section-gap);
+  padding: 0 var(--gutter);
+}
+
+/* Left layout: image left, text right */
+.image-left {
+  flex-direction: row;
+}
+
+/* Right layout: text left, image right */
+.image-right {
+  flex-direction: row;
+}
+
+/* Center layout: stacked, centered */
+.image-center {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* --- FIGURE / IMAGE WRAPPER --- */
+.img-wrap {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.img-wrap img {
+  border-radius: 2px;
+  filter: grayscale(20%) contrast(1.05);
+  transition: filter 0.5s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.img-wrap img:hover {
+  filter: grayscale(0%) contrast(1.08);
+}
+
+figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--auric-gold);
+  opacity: 0.8;
+}
+
+/* Left-aligned image sizing */
+.img-left {
+  width: clamp(260px, 40%, 420px);
+}
+
+.img-left img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Right-aligned image sizing */
+.img-right {
+  width: clamp(260px, 40%, 420px);
+}
+
+.img-right img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+}
+
+/* CENTERED image — always centered regardless of viewport */
+.img-centered {
+  width: 100%;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.img-centered img {
+  width: 100%;
+  height: clamp(280px, 45vw, 480px);
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+/* Gold accent line on side images */
+.img-left::before,
+.img-right::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 60%;
+  background: var(--auric-gold);
+  top: 20%;
+  opacity: 0.5;
+}
+
+.img-left::before {
+  left: -16px;
+}
+.img-right::after {
+  right: -16px;
+}
+
+/* ============================================================
+   STANZA TEXT
+   ============================================================ */
+.stanza {
+  flex: 1;
+}
+
+.stanza p,
+.closing-stanza p {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 300;
+  line-height: 2.1;
+  color: var(--chalk);
+}
+
+.stanza-center {
+  max-width: 620px;
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.stanza-right {
+  text-align: left;
+}
+.stanza-left {
+  text-align: right;
+}
+
+/* ============================================================
+   LIST SECTION
+   ============================================================ */
+.list-section {
+  max-width: 760px;
+  margin: 0 auto var(--section-gap);
+  padding: 3.5rem var(--gutter);
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  position: relative;
+}
+
+.list-section::before {
+  content: '"';
+  position: absolute;
+  top: -1.5rem;
+  left: var(--gutter);
+  font-family: var(--font-display);
+  font-size: 7rem;
+  color: var(--auric-gold);
+  opacity: 0.15;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.list-heading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+  color: var(--auric-gold);
+  margin-bottom: 2rem;
+  letter-spacing: 0.03em;
+}
+
+.becoming-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: becoming-counter;
+}
+
+.becoming-list li {
+  counter-increment: becoming-counter;
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 1.4rem;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-weight: 300;
+  color: var(--chalk);
+  line-height: 1.75;
+}
+
+.becoming-list li::before {
+  content: counter(becoming-counter, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: var(--auric-gold);
+  opacity: 0.7;
+  line-height: 2.4;
+}
+
+/* ============================================================
+   CLOSING STANZA
+   ============================================================ */
+.closing {
+  max-width: 540px;
+  margin: 0 auto var(--section-gap);
+  padding: 0 var(--gutter);
+  text-align: center;
+}
+
+.closing-stanza {
+  border: none;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  line-height: 2.1;
+  color: var(--warm-white);
+  margin-bottom: 2rem;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.closing-stanza::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--auric-gold);
+  margin: 0 auto 2rem;
+  opacity: 0.6;
+}
+
+.closing-stanza p em {
+  font-style: italic;
+  color: var(--auric-gold);
+  font-size: 1.1em;
+}
+
+.closing-label {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--silver);
+  opacity: 0.7;
+  margin-top: 1rem;
+}
